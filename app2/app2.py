@@ -1,12 +1,16 @@
 from flask import Flask, render_template
 
-app = Flask(__name__)
+# Шаблон лежит в томе ./storage → /storage, а не в /templates
+app = Flask(__name__, template_folder='/storage')
 
 
-@app.route('/hello')
+# Клиент ходит на https://localhost/ (корень).
+@app.route('/')
 def hello_world():
-    return render_template('index.html')
+    # Без source_app шаблон давал «Hello World from !»
+    return render_template('index.html', source_app='app2')
 
 
 if __name__ == '__main__':
-   app.run(debug=True, host='0.0.0.0', port=80)
+    # user www не биндит порты <1024
+    app.run(debug=True, host='0.0.0.0', port=8080)

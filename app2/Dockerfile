@@ -14,4 +14,5 @@ USER www
 
 ENTRYPOINT [ "python3" ]
 
-CMD [ "app1.py" ]
+# Было app1.py в образе app2
+CMD [ "app2.py" ]
